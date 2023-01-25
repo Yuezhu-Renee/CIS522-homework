@@ -10,7 +10,9 @@ class LinearRegression:
     b: float
 
     def __init__(self):
-        pass
+        self.w=np.ndarray
+        self.b=0
+
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
@@ -45,9 +47,6 @@ class GradientDescentLinearRegression(LinearRegression):
     """
     A linear regression model that uses gradient descent to fit the model.
     """
-
-    w: np.ndarray
-    b: float
 
     def fit(
         self, X: np.ndarray, y: np.ndarray, lr: float = 0.01, epochs: int = 1000
