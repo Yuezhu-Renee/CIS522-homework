@@ -10,9 +10,8 @@ class LinearRegression:
     b: float
 
     def __init__(self):
-        self.w=np.ndarray
-        self.b=0
-
+        self.w = np.ndarray
+        self.b = 0
 
     def fit(self, X: np.ndarray, y: np.ndarray) -> None:
         """
