@@ -25,7 +25,7 @@ class LinearRegression:
             Nothing.
         """
         X = np.c_[np.ones(X.shape[0]), X]
-        self.w = np.linalg.pinv(np.matmul(X.T, X) @ np.matmul(X.T, Y) )
+        self.w = np.linalg.pinv(X.T @ X) @ (X.T @ Y)
         return None
 
     def predict(self, X: np.ndarray) -> np.ndarray:
