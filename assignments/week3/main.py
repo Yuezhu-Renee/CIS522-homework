@@ -32,7 +32,6 @@ def get_mnist_data() -> Tuple[DataLoader, DataLoader]:
     Get the MNIST data from torchvision.
 
     Arguments:
-        None
 
     Returns:
         train_loader (DataLoader): The training data loader.
@@ -127,6 +126,7 @@ def train(
                 # Update the total and correct counts:
                 total += labels.size(0)
                 correct += (predictions == labels).sum().item()
+
         # Calculate the accuracy:
         accuracy = correct / total
         # Update the progress bar:
@@ -147,6 +147,7 @@ def main():
         learning_rate=0.001,
         device=torch.device("cuda" if torch.cuda.is_available() else "cpu"),
     )
+
 
 
 if __name__ == "__main__":
