@@ -47,10 +47,10 @@ class MLP(torch.nn.Module):
         Returns:
             The output of the network.
         """
-        x = self.input_layer(x)
-        x = self.activation(x)
+        y = self.input_layer(x)
+        y = self.activation(y)
         for layer in self.hidden_layers:
-            x = layer(x)
-            x = self.activation(x)
-        x = self.output_layer(x)
-        return x
+            y = layer(y)
+            y = self.activation(y)
+        y = self.output_layer(y)
+        return y
