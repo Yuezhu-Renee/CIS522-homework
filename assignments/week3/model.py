@@ -1,6 +1,7 @@
 from typing import Callable
 import torch
 
+
 class MLP(torch.nn.Module):
     def __init__(
         self,
@@ -25,15 +26,14 @@ class MLP(torch.nn.Module):
         self.hidden_count = hidden_count
         self.input_layer = torch.nn.Linear(input_size, hidden_size)
         self.hidden_layers = torch.nn.ModuleList(
-            [torch.nn.Linear(hidden_size, hidden_size) for _ in range(hidden_count - 1)])
+            [torch.nn.Linear(hidden_size, hidden_size) for _ in range(hidden_count - 1)]
+        )
         self.output_layer = torch.nn.Linear(hidden_size, num_classes)
         self.activation = activation()
         initializer(self.input_layer.weight)
         for layer in self.hidden_layers:
             initializer(layer.weight)
         initializer(self.output_layer.weight)
-
-
 
     def forward(self, x):
         """
