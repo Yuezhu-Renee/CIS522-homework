@@ -32,6 +32,7 @@ class MLP(torch.nn.Module):
         self.output_layer = torch.nn.Linear(hidden_size, num_classes)
         self.activation = activation()
         initializer(self.input_layer.weight)
+        #Change
         for layer in self.hidden_layers:
             initializer(layer.weight)
         initializer(self.output_layer.weight)
