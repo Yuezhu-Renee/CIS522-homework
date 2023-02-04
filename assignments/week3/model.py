@@ -42,8 +42,8 @@ class MLP(torch.nn.Module):
 
         initializer(self.inputlayer.weight)
 
-        for l in self.layers:
-            initializer(l.weight)
+        for layer in self.layers:
+            initializer(layer.weight)
 
         initializer(self.outputlayer.weight)
 
@@ -60,8 +60,8 @@ class MLP(torch.nn.Module):
         x = self.inputlayer(x)
         x = self.activation(x)
 
-        for l in self.layers:
-            x = self.activation(l(x))
+        for layer in self.layers:
+            x = self.activation(layer(x))
 
         x = self.outputlayer(x)
         return x
