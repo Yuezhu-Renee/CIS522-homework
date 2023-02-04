@@ -12,7 +12,7 @@ def create_model(input_dim: int, output_dim: int) -> MLP:
         hidden_dims (list): The dimensions of the hidden layers.
 
     Returns:
-        MLP: The created model
+        MLP: The created model.
 
     """
     return MLP(
