@@ -32,6 +32,7 @@ def test_fn_signatures():
             ), f"The argument type of `{method}:{param.name}` is not annotated."
 
 
+
 def test_docstrings():
     """
     Disallow missing docstrings.
