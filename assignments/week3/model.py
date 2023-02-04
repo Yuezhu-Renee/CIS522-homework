@@ -27,7 +27,7 @@ class MLP(torch.nn.Module):
             initializer: The initializer to use for the weights.
 
         Returns:
-            Nothing.
+            Nothing
         """
         super().__init__()
         self.hidden_count = hidden_count
