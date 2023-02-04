@@ -39,7 +39,7 @@ class MLP(torch.nn.Module):
 
         self.outputlayer = torch.nn.Linear(hidden_size, num_classes)
         self.activation = activation()
-        self.dropout = torch.nn.Dropout(0.1)
+        self.dropout = torch.nn.Dropout(0.3)
 
         initializer(self.inputlayer.weight)
 
