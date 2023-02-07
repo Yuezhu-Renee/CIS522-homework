@@ -4,7 +4,7 @@ import torch
 
 class MLP(torch.nn.Module):
     """
-    Multilayer perceptron
+    Multilayer perceptron.
     """
 
     def __init__(
