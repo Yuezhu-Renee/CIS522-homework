@@ -40,6 +40,7 @@ class MLP(torch.nn.Module):
         self.outputlayer = torch.nn.Linear(hidden_size, num_classes)
         self.activation = activation()
         self.norm = torch.nn.BatchNorm1d(hidden_size)
+        self.drop = torch.nn.Dropout(0.2)
 
         initializer(self.inputlayer.weight)
 
@@ -63,7 +64,7 @@ class MLP(torch.nn.Module):
         x = self.activation(x)
 
         for layer in self.layers:
-            x = self.activation(self.norm(layer(x)))
+            x = self.activation(self.drop(self.norm(layer(x))))
 
         x = self.outputlayer(x)
         return x
