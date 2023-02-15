@@ -45,7 +45,3 @@ class CustomLRScheduler(_LRScheduler):
             self.ini_lr / (1 + self.decay[i - 1] * i)
             for i in range(1, self.num_of_epoch + 1, 1)
         ]
-
-    # def _get_closed_form_lr(self):
-    #     return [base_lr * self.gamma ** (self.last_epoch // self.step_size)
-    #             for base_lr in self.base_lrs]
