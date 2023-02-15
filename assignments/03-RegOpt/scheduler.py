@@ -37,10 +37,6 @@ class CustomLRScheduler(_LRScheduler):
         # Note to students: You CANNOT change the arguments or return type of
         # this function (because it is called internally by Torch)
 
-        # ... Your Code Here ...
-        # Here's our dumb baseline implementation:
-        # return [i for i in self.base_lrs]
-
         return [
             self.ini_lr / (1 + self.decay[i - 1] * i)
             for i in range(1, self.num_of_epoch + 1, 1)
