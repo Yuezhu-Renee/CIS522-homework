@@ -5,15 +5,17 @@ import torch.nn as nn
 from torchvision.transforms import Compose, Normalize, ToTensor
 
 
-class CONFIG:
 
-    batch_size = 64
-    num_epochs = 2
-    initial_learning_rate = 0.001
+class CONFIG:
+    batch_size = 32
+    num_epochs = 10
+    initial_learning_rate = 0.0008
 
     lrs_kwargs = {
         # You can pass arguments to the learning rate scheduler
         # constructor here.
+        'num_of_epoch':num_epochs,
+        'ini_lr':initial_learning_rate
     }
 
     optimizer_factory: Callable[
