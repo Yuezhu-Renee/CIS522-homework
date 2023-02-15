@@ -4,8 +4,6 @@ import torch.optim
 import torch.nn as nn
 from torchvision.transforms import Compose, Normalize, ToTensor
 
-# Normalize, ToTensor
-
 
 class CONFIG:
     batch_size = 32
