@@ -28,8 +28,8 @@ def get_cifar10_data() -> Tuple[DataLoader, DataLoader]:
         None
 
     Returns:
-        train_loader (DataLoader): The training data loader.
-        test_loader (DataLoader): The test data loader.
+        train_loader(DataLoader): The training data loader.
+        test_loader(DataLoader): The test data loader.
 
     """
     # Get the training data:
