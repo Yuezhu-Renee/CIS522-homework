@@ -23,8 +23,8 @@ class Model(torch.nn.Module):
         """
         Initialize the model
         """
-        c1 = 64
-        c2 = 96
+        c1 = 32
+        c2 = 32
         super().__init__()
         dropout_prob = 0.5
 
@@ -51,34 +51,6 @@ class Model(torch.nn.Module):
                 torch.nn.BatchNorm2d(num_features=channel_out),
             )
 
-        """
-              construct the network with the following layers:
-              block 1: 
-              input channel: 3, output channel: c1, kernel_size: 3, stride: 1, padding: 1
-              block 2: 
-              input channel: c1, output channel: c1, kernel_size: 3, stride: 1, padding: 1
-              block 3: 
-              input channel: c1, output channel: c1, kernel_size: 3, stride: 2, padding: 1
-              DROPOUT
-
-              block 4: 
-              input channel: c1, output channel: c2, kernel_size: 3, stride: 1, padding: 1
-              block 5: 
-              input channel: c2, output channel: c2, kernel_size: 3, stride: 1, padding: 1
-              block 6: 
-              input channel: c2, output channel: c2, kernel_size: 3, stride: 2, padding: 1
-              DROPOUT
-
-              block 4: 
-              input channel: c2, output channel: c2, kernel_size: 3, stride: 1, padding: 1
-              block 5: 
-              input channel: c2, output channel: c2, kernel_size: 3, stride: 1, padding: 1
-              block 6: 
-              input channel: c2, output channel: 10, kernel_size: 1, stride: 1, padding: 1
-              ! aggregate the channels together
-              AVGPOOL
-              View(10)
-              """
         self.m = torch.nn.Sequential(
             # Block 1
             convbn(num_channels, c1, 3, 1, 1),
