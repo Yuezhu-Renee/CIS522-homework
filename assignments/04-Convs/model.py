@@ -2,6 +2,10 @@ import torch
 
 
 class View(torch.nn.Module):
+    """
+    Change the dimension.
+    """
+
     def __init__(self, o):
         super().__init__()
         self.o = o
