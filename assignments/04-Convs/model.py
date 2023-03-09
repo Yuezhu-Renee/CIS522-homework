@@ -1,17 +1,6 @@
 import torch
-
-
-class View(torch.nn.Module):
-    """
-    Change the dimension.
-    """
-
-    def __init__(self, o):
-        super().__init__()
-        self.o = o
-
-    def forward(self, x):
-        return x.view(-1, self.o)
+import torch.nn as nn
+import torch.nn.functional as F
 
 
 class Model(torch.nn.Module):
@@ -23,52 +12,20 @@ class Model(torch.nn.Module):
         """
         Initialize the model
         """
-        c1 = 32
-        c2 = 32
         super().__init__()
-        dropout_prob = 0.5
 
-        def convbn(channel_in, channel_out, kernel_sz, stride_sz=1, padding=0):
-            """
-            build a conv + bn block
-            operations are in the following order:
-            1. conv2d
-            2. relu
-            3. batchnorm
+        self.conv1 = nn.Conv2d(num_channels, 12, 5)
+        self.pool = nn.MaxPool2d(2, 2)
+        self.conv2 = nn.Conv2d(12, 16, 5)
+        self.fc1 = nn.Linear(16 * 5 * 5, 512)
+        self.fc2 = nn.Linear(512, 84)
+        self.fc3 = nn.Linear(84, num_classes)
 
-            use specified input channels (channel_in), output channels (channel_out), kernel size (kernel_sz),
-            stride size (stride_sz), padding (padding)
-            """
-            return torch.nn.Sequential(
-                torch.nn.Conv2d(
-                    in_channels=channel_in,
-                    out_channels=channel_out,
-                    kernel_size=kernel_sz,
-                    stride=stride_sz,
-                    padding=padding,
-                ),
-                torch.nn.ReLU(),
-                torch.nn.BatchNorm2d(num_features=channel_out),
-            )
-
-        self.m = torch.nn.Sequential(
-            # Block 1
-            convbn(num_channels, c1, 3, 1, 1),
-            convbn(c1, c1, 3, 1, 1),
-            convbn(c1, c1, 3, 2, 1),
-            torch.nn.Dropout(dropout_prob),
-            # block 4
-            convbn(c1, c2, 3, 1, 1),
-            convbn(c2, c2, 3, 1, 1),
-            convbn(c2, c2, 3, 2, 1),
-            torch.nn.Dropout(dropout_prob),
-            # block 7
-            convbn(c2, c2, 3, 1, 1),
-            convbn(c2, c2, 3, 1, 1),
-            convbn(c2, num_classes, 1, 1, 1),
-            torch.nn.AvgPool2d(kernel_size=8),
-            View(10),
-        )
+        nn.init.kaiming_normal_(self.conv1.weight)
+        nn.init.kaiming_normal_(self.conv2.weight)
+        nn.init.kaiming_normal_(self.fc1.weight)
+        nn.init.kaiming_normal_(self.fc2.weight)
+        nn.init.kaiming_normal_(self.fc3.weight)
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         """
@@ -76,5 +33,10 @@ class Model(torch.nn.Module):
         Return:
             Output: torch.Tensor
         """
-
-        return self.m(x)
+        x = self.pool(F.relu(self.conv1(x)))
+        x = self.pool(F.relu(self.conv2(x)))
+        x = x.view(-1, 16 * 5 * 5)
+        x = F.relu(self.fc1(x))
+        x = F.relu(self.fc2(x))
+        x = self.fc3(x)
+        return x
