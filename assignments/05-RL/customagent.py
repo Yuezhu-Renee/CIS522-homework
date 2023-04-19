@@ -6,7 +6,7 @@ from collections import deque
 
 class Agent:
     """
-    The agent with act and learn;
+    The agent with act and learn.
     """
 
     def __init__(
