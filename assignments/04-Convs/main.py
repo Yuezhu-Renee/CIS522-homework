@@ -141,7 +141,7 @@ def main() -> None:
     # Create the data loaders:
     train_loader, test_loader = get_cifar10_data()
     # Create the model:
-    model = Model(num_channels=3, num_classes=10)
+    model = Model(num_channels=3, z=10)
     # Create the optimizer:
     optimizer = CONFIG.optimizer_factory(model)
     # Create the loss function:

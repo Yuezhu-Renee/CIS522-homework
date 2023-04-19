@@ -1,12 +1,8 @@
 {
     "assignment_name": "RL",
     "contributors": [
-        {
-            "name": "Change this to your name",
-            "pennkey": "MyPennKey"
-        }
+        {"name": "Yuezhu Chen", "pennkey": "yuezhuc"},
+        {"name": "Jiawen Zhang", "pennkey": "jiawen22"},
     ],
-    "sources": [
-        "Don't forget to list your sources/attribution here!"
-    ]
+    "sources": ["Don't forget to list your sources/attribution here!"],
 }

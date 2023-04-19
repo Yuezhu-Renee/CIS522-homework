@@ -36,7 +36,6 @@ def test_fn_signatures():
 def test_docstrings():
     """
     Disallow missing docstrings.
-
     """
     lr = CustomLRScheduler
     # all methods must have a docstring.
