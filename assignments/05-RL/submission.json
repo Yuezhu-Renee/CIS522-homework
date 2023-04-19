@@ -1,8 +1,16 @@
 {
     "assignment_name": "RL",
     "contributors": [
-        {"name": "Yuezhu Chen", "pennkey": "yuezhuc"},
-        {"name": "Jiawen Zhang", "pennkey": "jiawen22"},
+        {
+            "name": "Yuezhu Chen",
+            "pennkey": "yuezhuc"
+        },
+        {
+            "name": "Jiawen Zhang",
+            "pennkey": "jiawen22"
+        }
     ],
-    "sources": ["Don't forget to list your sources/attribution here!"],
+    "sources": [
+        "Don't forget to list your sources/attribution here!"
+    ]
 }
